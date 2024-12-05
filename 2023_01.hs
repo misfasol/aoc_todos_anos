@@ -1,8 +1,8 @@
-import System.IO
 import Data.Char
+import System.IO
 
 funcao :: String -> Int
-funcao x = foldr1 (+) (map (\x -> read x :: Int) (map (\x -> [head x, last x]) (map (filter isDigit) (lines x))))
+funcao x = sum (map (\x -> read x :: Int) (map (\x -> [head x, last x]) (map (filter isDigit) (lines x))))
 
 main :: IO ()
 main = do
