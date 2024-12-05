@@ -34,7 +34,7 @@ conteudo = [l.strip() for l in arq.readlines()]
 
 # print(conteudo[1169:1181])
 
-regras = []
+regras: list[str] = []
 contador = 0
 for linha in conteudo:
     contador += 1
@@ -42,22 +42,47 @@ for linha in conteudo:
         break
     regras.append(linha)
 
-entradas = []
+entradas: list[str] = []
 while contador < len(conteudo):
     entradas.append(conteudo[contador])
     contador += 1
 
-# print(regras)
-# print(entradas)
-
 final = 0
+final2 = 0
+
+def emOrdem(paginas: list[str]) -> bool:
+    for pag in range(len(paginas)):
+        for regra in regras:
+            if regra.startswith(paginas[pag]):
+                fim = regra[3:5]
+                for i in range(len(paginas)):
+                    if paginas[i] == fim:
+                        if i < pag:
+                            return False
+    return True
 
 for entrada in entradas:
     paginas = entrada.split(",")
-    print(entrada, paginas)
-    for i in paginas:
-        print(i)
+    valido = emOrdem(paginas)
+    if valido:
+        final += int(paginas[len(paginas)//2])
+    else:
+        while not valido:
+            for pag in range(len(paginas)):
+                for regra in regras:
+                    if regra.startswith(paginas[pag]):
+                        fim = regra[3:5]
+                        for i in range(len(paginas)):
+                            if paginas[i] == fim:
+                                if i < pag:
+                                    temp = paginas[i]
+                                    teim = paginas[pag]
+                                    paginas[i] = teim
+                                    paginas[pag] = temp
+                                    valido = emOrdem(paginas)
+        final2 += int(paginas[len(paginas)//2])
+            
 
-    break
 
-print(f"final: {final}")
+print(f"final : {final}")  # 143
+print(f"final2: {final2}") # 123
