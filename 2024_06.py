@@ -71,19 +71,6 @@ def resolver(conteudo: list[str]):
         if conteudo[xa][ya] == direChar(direAtu):
             return (None, True)
 
-#     se.add((xa, ya))
-#     xf, yf = somDir((xa, ya), direAtu)
-#     if xf < 0 or xf >= len(conteudo) or yf < 0 or yf >= len(conteudo[0]):
-#         break
-#     oqtafrente = conteudo[xf][yf]
-#     if oqtafrente == "#":
-#         direAtu = rota(direAtu)
-#     conteudo[xa][ya] = direChar(direAtu)
-#     if oqtafrente == direChar(direAtu):
-#         return (None, True)
-#     xa, ya = somDir((xa, ya), direAtu)
-# return (len(se), False)
-
 final1, _ = resolver([l.copy() for l in conteudo])
 
 print(f"final1: {final1}")
