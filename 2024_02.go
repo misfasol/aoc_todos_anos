@@ -31,14 +31,9 @@ func Ex2() {
 		}
 		numeros = append(numeros, nint)
 	}
-	// for k, v := range numeros {
-	// 	fmt.Println(k, ":", v)
-	// }
 	checar := func(lista []int) bool {
 		nova := make([]int, len(lista))
-		for k := range lista {
-			nova[k] = lista[k]
-		}
+		copy(nova, lista)
 		slices.Reverse(nova)
 		if !slices.IsSorted(lista) && !slices.IsSorted(nova) {
 			return false
