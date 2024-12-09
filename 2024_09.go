@@ -6,11 +6,20 @@ import (
 )
 
 func Ex9() {
-	arq, _ := os.ReadFile("2024_09.txt")
+	parte_09_1("asd.txt")
+	parte_09_2("asd.txt")
+}
+
+func parte_09_1(nome string) {
+	arq, _ := os.ReadFile(nome)
+
 	var blocos []int
 	var id int
 	var espaco bool = true
 	for _, r := range arq {
+		if r < 48 || r >= 58 {
+			continue
+		}
 		for i := r - 48; i > 0; i-- {
 			if espaco {
 				blocos = append(blocos, id)
@@ -23,14 +32,6 @@ func Ex9() {
 		}
 		espaco = !espaco
 	}
-	// for _, v := range blocos {
-	// 	if v == -1 {
-	// 		fmt.Print(".")
-	// 	} else {
-	// 		fmt.Print(v)
-	// 	}
-	// }
-	// fmt.Println()
 	menor := 0
 	maior := len(blocos) - 1
 	for {
@@ -48,24 +49,69 @@ func Ex9() {
 			blocos = blocos[:len(blocos)-1]
 			continue
 		}
-		// fmt.Printf("%2v %2v %2v %2v ", menor, maior, blocos[menor], blocos[maior])
 		blocos[menor] = blocos[maior]
 		blocos = blocos[:len(blocos)-1]
 		maior--
 	}
-	// for _, v := range blocos {
-	// 	if v == -1 {
-	// 		fmt.Print(".")
-	// 	} else {
-	// 		fmt.Print(v)
-	// 	}
-	// }
-	// fmt.Println()
-	final1 := 0
+	if blocos[len(blocos)-1] == -1 {
+		blocos = blocos[:len(blocos)-1]
+	}
+	var final1 uint64 = 0
 	for i, v := range blocos {
-		final1 += i * v
+		final1 += uint64(i * v)
 	}
 	fmt.Printf("final1: %v\n", final1)
 }
 
-// 1928
+func parte_09_2(nome string) {
+	arq, _ := os.ReadFile(nome)
+
+	var blocos []int
+	var id int
+	var espaco bool = true
+	for _, r := range arq {
+		if r < 48 || r >= 58 {
+			continue
+		}
+		for i := r - 48; i > 0; i-- {
+			if espaco {
+				blocos = append(blocos, id)
+			} else {
+				blocos = append(blocos, -1)
+			}
+		}
+		if espaco {
+			id++
+		}
+		espaco = !espaco
+	}
+	menor := 0
+	maior := len(blocos) - 1
+	for {
+		for blocos[menor] != -1 {
+			menor++
+			if menor >= len(blocos) || menor >= maior {
+				break
+			}
+		}
+		if menor >= maior {
+			break
+		}
+		if blocos[maior] == -1 {
+			maior--
+			blocos = blocos[:len(blocos)-1]
+			continue
+		}
+		blocos[menor] = blocos[maior]
+		blocos = blocos[:len(blocos)-1]
+		maior--
+	}
+	if blocos[len(blocos)-1] == -1 {
+		blocos = blocos[:len(blocos)-1]
+	}
+	var final1 uint64 = 0
+	for i, v := range blocos {
+		final1 += uint64(i * v)
+	}
+	fmt.Printf("final2: %v\n", final1)
+}
