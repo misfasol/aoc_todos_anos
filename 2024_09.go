@@ -9,6 +9,7 @@ func Ex9() {
 	nome := "asd.txt"
 	parte_09_1(nome)
 	parte_09_2(nome)
+	// 2333133121414131402
 }
 
 func parte_09_1(nome string) {
@@ -131,7 +132,6 @@ func parte_09_2(nome string) {
 	// printarBlocos(blocos)
 	var final2 uint64 = 0
 	for k, v := range blocos {
-		// fmt.Printf("[%v %v] ", k, v)
 		if v != -1 {
 			final2 += uint64(k * v)
 		}

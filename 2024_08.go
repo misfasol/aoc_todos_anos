@@ -6,10 +6,6 @@ import (
 	"strings"
 )
 
-type Pos struct {
-	x, y int
-}
-
 func Ex8() {
 	pos := make(map[rune][]Pos)
 	anti1 := make(map[Pos]bool)
