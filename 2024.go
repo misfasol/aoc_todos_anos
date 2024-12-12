@@ -1,7 +1,7 @@
 package main
 
 func main() {
-	Ex11()
+	Ex12()
 }
 
 type Vec2 struct {
