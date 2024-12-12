@@ -69,17 +69,6 @@ type Bloco struct {
 	pos, tam, id int
 }
 
-func printarBlocos(blocos []int) {
-	for _, v := range blocos {
-		if v >= 0 {
-			fmt.Printf("%v", v)
-		} else {
-			fmt.Printf(".")
-		}
-	}
-	fmt.Println()
-}
-
 func parte_09_2(nome string) {
 	arq, _ := os.ReadFile(nome)
 

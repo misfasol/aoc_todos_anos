@@ -11,15 +11,6 @@ type Plot struct {
 	run      rune
 }
 
-func dia12PrintarMapa(mapa [][]Plot) {
-	for _, l := range mapa {
-		for _, p := range l {
-			fmt.Printf("%c", p.run)
-		}
-		fmt.Println()
-	}
-}
-
 func Ex12() {
 	inputBytes, err := os.ReadFile("2024_12.txt")
 	if err != nil {
